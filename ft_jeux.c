@@ -6,7 +6,7 @@
 /*   By: mfleuria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 13:33:29 by mfleuria          #+#    #+#             */
-/*   Updated: 2016/03/10 14:19:48 by mfleuria         ###   ########.fr       */
+/*   Updated: 2016/03/10 20:37:20 by jleu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,18 @@ static int	ft_check(int tab[9])
 
 int			ft_jeux(t_rect *rect, t_env *e)
 {
-	if (e->joueur == 1 && rect->is_not_empty == 0)
+	if (e->joueur == 1 && e->tab[rect->pos] == 0)
 	{
-		ft_circle(rect, e);
-		rect->is_not_empty = 1;
+	ft_putendl("j1");
+		ft_draw_circle(e, *rect);
+		e->tab[rect->pos] = 1;
 		e->joueur = 2;
 	}
-	else if (e->joueur == 2 && (rect->is_not_empty == 0))
+	else if (e->joueur == 2 && e->tab[rect->pos] == 0)
 	{
-		ft_cross(rect, e);
-		rect->is_not_empty = 2;
+	ft_putendl("j2");
+		ft_draw_cross(e, *rect);
+		e->tab[rect->pos] = 2;
 		e->joueur = 1;
 	}
 	else
